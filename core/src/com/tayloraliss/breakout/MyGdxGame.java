@@ -24,6 +24,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		ball.update();
 		paddle.update();
+		ball.checkCollision(paddle);
 
 		shape.begin(ShapeRenderer.ShapeType.Filled);
 		ball.draw(shape);
