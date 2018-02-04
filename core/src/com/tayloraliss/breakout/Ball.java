@@ -74,7 +74,8 @@ public class Ball{
     }
 
     private boolean collidesWith(Paddle paddle){
-        if ((paddle.getLeftLimit() < this.rightLimit) && (paddle.getLeftLimit() > this.leftLimit)){
+        if ((this.leftLimit <= paddle.getRightLimit()) && (paddle.getRightLimit() <= this.rightLimit + paddle.getWidth()) &&
+                (this.topLimit >= paddle.getBottomLimit() && (paddle.getBottomLimit() >= this.bottomLimit - paddle.getHeight()))) {
             return true;
         } else {
             return false;

@@ -31,6 +31,14 @@ public class Paddle {
         return bottomLimit;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public void updateLimits(){
         this.leftLimit = x;
         this.rightLimit = x + this.width;
