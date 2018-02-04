@@ -1,5 +1,6 @@
 package com.tayloraliss.breakout;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Paddle {
@@ -13,24 +14,13 @@ public class Paddle {
         this.height = height;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
     public void draw(ShapeRenderer shape){
         shape.rect(x, y, width, height);
+    }
+
+    public void update(){
+        this.x = (Gdx.input.getX() - this.width / 2);
+        this.y = (Gdx.graphics.getHeight() - (Gdx.input.getY() + this.height / 2));
     }
 
 }

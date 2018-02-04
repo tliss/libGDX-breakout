@@ -23,15 +23,11 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		ball.update();
-
-		paddle.setX(Gdx.input.getX() - paddle.getWidth() / 2);
-		paddle.setY(Gdx.graphics.getHeight() - (Gdx.input.getY() + paddle.getHeight() / 2));
-
+		paddle.update();
 
 		shape.begin(ShapeRenderer.ShapeType.Filled);
 		ball.draw(shape);
 		paddle.draw(shape);
 		shape.end();
-
 	}
 }
