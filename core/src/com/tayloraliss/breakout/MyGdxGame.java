@@ -24,6 +24,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		ball.update();
 
+		paddle.setX(Gdx.input.getX() - paddle.getWidth() / 2);
+		paddle.setY(Gdx.graphics.getHeight() - (Gdx.input.getY() + paddle.getHeight() / 2));
+
+
 		shape.begin(ShapeRenderer.ShapeType.Filled);
 		ball.draw(shape);
 		paddle.draw(shape);
