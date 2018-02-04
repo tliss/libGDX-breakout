@@ -12,7 +12,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Ball ball;
 	private Paddle paddle;
 	private ArrayList<Block> blocks = new ArrayList<Block>();
-
+	int blockWidth = 63;
+	int blockHeight = 20;
 
 	@Override
 	public void create () {
@@ -20,9 +21,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		ball = new Ball(150, 200, 20, 5);
 		paddle = new Paddle(30, 30, 150, 20);
 
-		for (int y = Gdx.graphics.getHeight()/2; y < Gdx.graphics.getHeight(); y += 30){
-			for (int x = 0; x < Gdx.graphics.getWidth(); x += 73) {
-				blocks.add(new Block(x, y, 63, 20));
+		for (int y = Gdx.graphics.getHeight()/2; y < Gdx.graphics.getHeight(); y += blockHeight + 10){
+			for (int x = 0; x < Gdx.graphics.getWidth(); x += blockWidth + 10) {
+				blocks.add(new Block(x, y, blockWidth, blockHeight));
 			}
 		}
 	}
