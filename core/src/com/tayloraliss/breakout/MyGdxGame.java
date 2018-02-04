@@ -5,18 +5,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.GL20;
 
-import java.util.Random;
-
 public class MyGdxGame extends ApplicationAdapter {
-	ShapeRenderer shape;
-	Ball ball;
-	Random r = new Random();
+	private ShapeRenderer shape;
+	private Ball ball;
+	private Paddle paddle;
 
 
 	@Override
 	public void create () {
 		shape = new ShapeRenderer();
 		ball = new Ball(150, 200, 20, 12, 5);
+		paddle = new Paddle(30, 30, 150, 20);
 	}
 
 	@Override
@@ -28,6 +27,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		shape.begin(ShapeRenderer.ShapeType.Filled);
 		ball.draw(shape);
+		paddle.draw(shape);
 		shape.end();
 
 	}
