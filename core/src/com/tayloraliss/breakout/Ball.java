@@ -1,36 +1,23 @@
 package com.tayloraliss.breakout;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Ball{
     private int x;
     private int y;
     private int size;
-    private int xSpeed;
-    private int ySpeed;
+    private int xSpeed, ySpeed;
     private int ballLeftLimit;
     private int ballRightLimit;
     private int ballTopLimit;
     private int ballBottomLimit;
 
-    public Ball() {
-        this.x = 50;
-        this.y = 50;
-        this.size = 50;
-        this.xSpeed = 5;
-        this.ySpeed = 5;
-        this.ballLeftLimit = this.x - this.size;
-        this.ballRightLimit = this.x + this.size;
-        this.ballTopLimit = this.y + this.size;
-        this.ballBottomLimit = this.y - this.size;
-    }
-
-    public Ball(int x, int y, int size, int xSpeed, int ySpeed) {
+    public Ball(int x, int y, int size, int speed) {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.xSpeed = xSpeed;
-        this.ySpeed = ySpeed;
+        this.xSpeed = this.ySpeed = speed;
         this.ballLeftLimit = this.x - this.size;
         this.ballRightLimit = this.x + this.size;
         this.ballTopLimit = this.y + this.size;
@@ -47,69 +34,12 @@ public class Ball{
         updateBallLimits();
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-        updateBallLimits();
-    }
-
     public int getxSpeed() {
         return xSpeed;
     }
 
-    public void setxSpeed(int xSpeed) {
-        this.xSpeed = xSpeed;
-    }
-
     public int getySpeed() {
         return ySpeed;
-    }
-
-    public void setySpeed(int ySpeed) {
-        this.ySpeed = ySpeed;
-    }
-
-    public int getBallLeftLimit() {
-        return ballLeftLimit;
-    }
-
-    public int getBallRightLimit() {
-        return ballRightLimit;
-    }
-
-    public int getBallTopLimit() {
-        return ballTopLimit;
-    }
-
-    public int getBallBottomLimit() {
-        return ballBottomLimit;
-    }
-
-    public void reverseX(){
-        this.xSpeed = -this.xSpeed;
-    }
-
-    public void reverseY(){
-        this.ySpeed = -this.ySpeed;
     }
 
     public void updateBallLimits(){
@@ -119,18 +49,15 @@ public class Ball{
         this.ballBottomLimit = this.y - this.size;
     }
 
-    public void checkBoundaries(int boundaryWidth, int boundaryHeight){
-        if (this.getBallRightLimit() > boundaryWidth || this.getBallLeftLimit() < 0) {
-            this.reverseX();
-        }
-        if (this.getBallTopLimit() > boundaryHeight ||this.getBallBottomLimit() < 0) {
-            this.reverseY();
-        }
-    }
-
-    public void move(){
+    public void update(){
         this.addxSpeed();
         this.addySpeed();
+        if (this.ballRightLimit > Gdx.graphics.getWidth() || this.ballLeftLimit < 0) {
+            this.xSpeed = -this.xSpeed;
+        }
+        if (this.ballTopLimit >  Gdx.graphics.getHeight() || this.ballBottomLimit < 0) {
+            this.ySpeed = -this.ySpeed;
+        }
     }
 
     public void draw(ShapeRenderer shape){

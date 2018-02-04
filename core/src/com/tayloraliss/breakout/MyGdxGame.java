@@ -14,7 +14,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		shape = new ShapeRenderer();
-		ball = new Ball(150, 200, 20, 12, 5);
+		ball = new Ball(150, 200, 20, 0);
 		paddle = new Paddle(30, 30, 150, 20);
 	}
 
@@ -22,8 +22,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		ball.move();
-		ball.checkBoundaries(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		ball.update();
 
 		shape.begin(ShapeRenderer.ShapeType.Filled);
 		ball.draw(shape);
