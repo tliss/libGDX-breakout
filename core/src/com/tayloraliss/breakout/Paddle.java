@@ -52,7 +52,7 @@ public class Paddle {
 
     public void update(){
         this.x = (Gdx.input.getX() - this.width / 2);
-//        this.y = (Gdx.graphics.getHeight() - (Gdx.input.getY() + this.height / 2));
+        //        this.y = (Gdx.graphics.getHeight() - (Gdx.input.getY() + this.height / 2));
         updateLimits();
     }
 

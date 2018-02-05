@@ -70,9 +70,25 @@ public class Ball{
         }
     }
 
+    public void checkCollision(Block block){
+        if (collidesWith(block)) {
+            this.ySpeed = -this.ySpeed;
+            block.destroyed = true;
+        }
+    }
+
     private boolean collidesWith(Paddle paddle){
-        if ((this.leftLimit <= paddle.getRightLimit()) && (paddle.getRightLimit() <= this.rightLimit + paddle.getWidth()) &&
-                (this.topLimit >= paddle.getBottomLimit() && (paddle.getBottomLimit() >= this.bottomLimit - paddle.getHeight()))) {
+        if ((this.leftLimit <= paddle.getRightLimit() && paddle.getRightLimit() <= this.rightLimit + paddle.getWidth()) &&
+                (this.topLimit >= paddle.getBottomLimit() && paddle.getBottomLimit() >= this.bottomLimit - paddle.getHeight())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean collidesWith(Block block){
+        if (this.leftLimit <= block.getRightLimit() && block.getRightLimit() <= this.rightLimit + block.getWidth() &&
+                this.topLimit >= block.getBottomLimit() && block.getBottomLimit() >= this.bottomLimit - block.getHeight()) {
             return true;
         } else {
             return false;

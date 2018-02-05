@@ -18,7 +18,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		shape = new ShapeRenderer();
-		ball = new Ball(150, 200, 20, 5);
+		ball = new Ball(150, 200, 10, 5);
 		paddle = new Paddle(30, 30, 150, 20);
 
 		for (int y = Gdx.graphics.getHeight()/2; y < Gdx.graphics.getHeight(); y += blockHeight + 10){
@@ -41,7 +41,17 @@ public class MyGdxGame extends ApplicationAdapter {
 		paddle.draw(shape);
 		for (Block block : blocks) {
 			block.draw(shape);
+			ball.checkCollision(block);
 		}
+		for (int i = 0; i < blocks.size(); i++) {
+			Block b = blocks.get(i);
+			if (b.destroyed) {
+				blocks.remove(b);
+				// we need to decrement i when a ball gets removed, otherwise we skip a block!
+				i--;
+			}
+		}
+
 		shape.end();
 	}
 }
